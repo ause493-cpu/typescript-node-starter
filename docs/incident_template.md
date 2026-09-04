@@ -6,8 +6,12 @@
 ## Root Cause Analysis
 [Provide exactly two sentences diagnosing the failure based on the Runbook and Sentry data.]
 
-## Code Fix
-[Insert only the updated lines of code inside a TypeScript markdown block. Do not include the entire file.]
+## Code Fix & Validation
+[Insert only the updated lines of code inside a TypeScript markdown block.]
+[Insert the unit test you created to validate both legacy and modern payloas.]
+
+## Security & Reliability Recommendations
+[Based on your web research of current OWASP API security standards, provide one concrete recommendation to improve our payload validation security moving forward.]
 
 ## Pull Request Description
 **Title:** [Insert PR Title]
