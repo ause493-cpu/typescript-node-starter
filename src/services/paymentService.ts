@@ -14,7 +14,7 @@ export class PaymentService {
             throw new Error('Missing mandatory transaction identifiers.');
         }
 
-        const transactionAmount = payload.currencyDetails.amount;
+        const transactionAmount = payload.currencyDetails?.amount ?? payload.amount;
 
         if (transactionAmount === undefined || transactionAmount <= 0) {
             throw new Error('Invalid transaction amount.');
@@ -23,3 +23,4 @@ export class PaymentService {
         return true;
     }
 }
+
