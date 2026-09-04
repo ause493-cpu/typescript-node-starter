@@ -14,9 +14,16 @@ export class PaymentService {
             throw new Error('Missing mandatory transaction identifiers.');
         }
 
-        const transactionAmount = payload.currencyDetails.amount;
+        // Modern (V2) clients nest the amount under `currencyDetails`; legacy (V1)
+        // clients send a flat root-level `amount` that implies USD. Resolve the
+        // nested value first and fall back to the root so both shapes are accepted.
+        const transactionAmount = payload.currencyDetails?.amount ?? payload.amount;
 
-        if (transactionAmount === undefined || transactionAmount <= 0) {
+        if (
+            typeof transactionAmount !== 'number' ||
+            !Number.isFinite(transactionAmount) ||
+            transactionAmount <= 0
+        ) {
             throw new Error('Invalid transaction amount.');
         }
 
